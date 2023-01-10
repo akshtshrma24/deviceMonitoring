@@ -29,22 +29,6 @@ services:
     environment:
       - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s/grafana/
     user: "1000"
-  cadvisor:
-    image: zcube/cadvisor:latest
-    container_name: cadvisor
-    restart: always
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - /:/rootfs:ro
-      - /var/run:/var/run:rw
-      - /sys:/sys:ro
-      - /var/lib/docker:/var/lib/docker:ro
-      - /var/run/docker.sock:/var/run/docker.sock:rw
-    devices:
-      - /dev/kmsg:/dev/kmsg
-    depends_on:
-      - device_monitoring
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
