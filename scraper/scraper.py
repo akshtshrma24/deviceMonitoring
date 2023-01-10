@@ -3,7 +3,7 @@ import json
 
 from prometheus_client import start_http_server, Gauge
 
-from checkStatus import * 
+from checkStatus import *
 
 
 jsonFile = open("config.json")
@@ -21,9 +21,9 @@ for name in js["IPS"]:
 
 # start scraper
 start_http_server(5002)
-while(True):
+while (True):
     for name in ip_name_dict:
         ip_address = ip_name_dict[name]
-        if(is_up(ip_address)):
+        if (is_up(ip_address)):
             gauge.labels(name, ip_address).set(str(time.time()))
         time.sleep(40)
